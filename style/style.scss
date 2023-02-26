@@ -1,0 +1,232 @@
+// initialize
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.btn {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #272727;
+  margin: 1rem 0.5rem;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  font-weight: bold;
+  &:hover {
+    cursor: pointer;
+    background-color: #272727;
+    color: white;
+    border: 1px solid white;
+  }
+}
+
+body {
+  background-color: #272727;
+  color: white;
+  font-family: "Baloo 2", "Noto Sans TC", sans-serif;
+
+  section.animation-wrapper {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+
+    section.animation {
+      margin-top: 10vh;
+      height: 80vh;
+      //   border: 5px solid red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .hero {
+        // border: 5px solid green;
+        width: 100%;
+        height: 0;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    .slider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(to right, rgb(144, 144, 144), rgb(0, 0, 0));
+      z-index: -1;
+    }
+  }
+
+  header {
+    box-shadow: 0 8px 6px -6px black;
+    ul {
+      display: flex;
+      li {
+        padding: 1rem;
+        a {
+          font-size: 1.15rem;
+          transition: all 0.3s ease;
+          &:hover {
+            color: yellow;
+          }
+        }
+      }
+    }
+  }
+
+  main {
+    section.main-part {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      p {
+        font-size: 1.15rem;
+      }
+
+      div.all-inputs {
+        form {
+          display: flex;
+          border: 2px solid white;
+          border-radius: 10px;
+          margin: 1rem;
+
+          div.grader {
+            input,
+            select {
+              font-size: 1.05rem;
+              padding: 0.5rem;
+              border: 0.25px solid rgb(39, 39, 21);
+              margin: 0.35rem;
+              border-radius: 10px;
+            }
+
+            input.class-number,
+            input.class-type {
+              width: 25%;
+            }
+            input.class-credit {
+              width: 13%;
+            }
+            button.trash {
+              border: none;
+              margin: 10px;
+              cursor: pointer;
+              background-color: #272727;
+              i {
+                font-size: 1.25rem;
+                pointer-events: none;
+                color: white;
+                transition: all 0.2s ease;
+                &:hover {
+                  color: yellow;
+                  background-color: white;
+                  border-radius: 50%;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      button.plus-btn {
+        background-color: #272727;
+        border: none;
+        width: 2.5rem;
+        margin: 3rem 0rem;
+        cursor: pointer;
+
+        i {
+          font-size: 2.5rem;
+          color: white;
+          transition: all 0.3s ease;
+          &:hover {
+            color: yellow;
+          }
+        }
+      }
+
+      div.result {
+        width: 200px;
+        height: 200px;
+        border: 3px solid red;
+        border-radius: 50%;
+        text-align: center;
+        animation-name: border_color;
+        animation-duration: 8s;
+        animation-iteration-count: infinite;
+        p {
+          margin-top: 15px;
+        }
+
+        h1#result-gpa {
+          font-size: 3.5rem;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+@keyframes border_color {
+  0% {
+    border-color: red;
+  }
+
+  33% {
+    border-color: limegreen;
+  }
+
+  66% {
+    border-color: yellow;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    main {
+      section.main-part {
+        div.all-inputs {
+          form {
+            div.grader {
+              width: 50vw;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              input.class-number,
+              input.class-type {
+                width: 70%;
+              }
+
+              input.class-credit {
+                width: 70%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
