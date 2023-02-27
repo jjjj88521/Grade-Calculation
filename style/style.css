@@ -193,17 +193,18 @@ body main section.main-part div.result h1#result-gpa {
 }
 @media screen and (max-width: 768px) {
   body main section.main-part div.all-inputs form div.grader {
-    width: 50vw;
+    width: 70vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
   body main section.main-part div.all-inputs form div.grader input.class-number,
-  body main section.main-part div.all-inputs form div.grader input.class-type {
-    width: 70%;
-  }
+  body main section.main-part div.all-inputs form div.grader input.class-type,
   body main section.main-part div.all-inputs form div.grader input.class-credit {
     width: 70%;
+  }
+  body main section.main-part div.all-inputs form div.grader input.class-type {
+    margin-top: 10px;
   }
 }/*# sourceMappingURL=style.css.map */

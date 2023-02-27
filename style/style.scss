@@ -228,18 +228,18 @@ body {
         div.all-inputs {
           form {
             div.grader {
-              width: 50vw;
+              width: 70vw;
               display: flex;
               flex-direction: column;
               justify-content: center;
               align-items: center;
               input.class-number,
-              input.class-type {
-                width: 70%;
-              }
-
+              input.class-type,
               input.class-credit {
                 width: 70%;
+              }
+              input.class-type {
+                margin-top: 10px;
               }
             }
           }
