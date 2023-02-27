@@ -99,6 +99,7 @@ body main section.main-part div.all-inputs form {
   border: 2px solid white;
   border-radius: 10px;
   margin: 1rem;
+  font-size: 0;
 }
 body main section.main-part div.all-inputs form div.grader input,
 body main section.main-part div.all-inputs form div.grader select {
