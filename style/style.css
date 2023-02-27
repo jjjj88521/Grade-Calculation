@@ -121,11 +121,15 @@ body main section.main-part div.all-inputs form div.grader button.trash {
   margin: 10px;
   cursor: pointer;
   background-color: #272727;
+  transition: all 0.3s ease;
 }
 body main section.main-part div.all-inputs form div.grader button.trash i {
   font-size: 1.25rem;
   pointer-events: none;
   color: white;
+}
+body main section.main-part div.all-inputs form div.grader button.trash:hover {
+  transform: scale(1.3);
 }
 body main section.main-part button.plus-btn {
   background-color: #272727;
@@ -140,7 +144,7 @@ body main section.main-part button.plus-btn i {
   transition: all 0.3s ease;
 }
 body main section.main-part button.plus-btn i:hover {
-  color: yellow;
+  transform: scale(1.3);
 }
 body main section.main-part div.result {
   width: 200px;

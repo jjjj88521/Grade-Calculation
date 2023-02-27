@@ -1,3 +1,4 @@
+// starting animation
 let hero = document.querySelector(".hero"),
   slider = document.querySelector(".slider"),
   animation = document.querySelector("section.animation-wrapper");
@@ -171,7 +172,7 @@ addButton.addEventListener("click", () => {
   let newDiv = document.createElement("div");
   newDiv.classList.add("grader");
 
-  // 製作表單內 input
+  // add new input tag in the new form
   let newInput1 = document.createElement("input");
   newInput1.setAttribute("type", "text");
   newInput1.setAttribute("list", "opt");
@@ -193,7 +194,7 @@ addButton.addEventListener("click", () => {
     setGPA();
   });
 
-  // select tag
+  // add new select tag
   let newSelect = document.createElement("select");
   newSelect.classList.add("select");
   newSelect.setAttribute("name", "select");
@@ -276,13 +277,14 @@ addButton.addEventListener("click", () => {
     changeColor(e.target);
   });
 
-  // trash button
+  // add new trash button
   let newButton = document.createElement("button");
   newButton.classList.add("trash");
   let newItag = document.createElement("i");
   newItag.classList.add("fas");
   newItag.classList.add("fa-trash");
   newButton.appendChild(newItag);
+  // click the trash button
   newButton.addEventListener("click", (e) => {
     e.preventDefault();
     e.target.parentElement.parentElement.style.animation =
@@ -323,3 +325,187 @@ allTrash.forEach((trash) => {
     );
   });
 });
+
+// Use Merge Sort to sort the grade
+let btn1 = document.querySelector(".sort-descending");
+let btn2 = document.querySelector(".sort-ascending");
+
+btn1.addEventListener("click", () => {
+  handleSorting("descending"); // 降序，由大到小
+});
+
+btn2.addEventListener("click", () => {
+  handleSorting("ascending"); // 升序，由小到大
+});
+
+// 取得 form 內的各種 input data
+function handleSorting(direction) {
+  let graders = document.querySelectorAll("div.grader");
+  let objectArray = [];
+
+  for (let i = 0; i < graders.length; i++) {
+    let class_name = graders[i].children[0].value;
+    let class_number = graders[i].children[1].value;
+    let class_credit = graders[i].children[2].value;
+    let class_grade = graders[i].children[3].value;
+
+    if (
+      !(
+        class_name == "" &&
+        class_number == "" &&
+        class_credit == "" &&
+        class_grade == ""
+      )
+    ) {
+      let class_object = {
+        class_name,
+        class_number,
+        class_credit,
+        class_grade,
+      };
+      objectArray.push(class_object);
+    }
+  }
+
+  // grade 換算成數字
+  for (let i = 0; i < graders.length; i++) {
+    objectArray[i].class_grade_number = convertor(objectArray[i].class_grade);
+  }
+
+  objectArray = mergeSort(objectArray);
+  if (direction == "descending") {
+    objectArray = objectArray.reverse();
+  }
+
+  console.log(objectArray);
+
+  // 根據 object array 的內容來更新網頁
+  let allInputs = document.querySelector(".all-inputs");
+  allInputs.innerHTML = "";
+
+  for (let i = 0; i < objectArray.length; i++) {
+    allInputs.innerHTML += `<form>
+    <div class="grader">
+      <input
+        type="text"
+        placeholder="class category"
+        class="class-type"
+        list="opt"
+        value=${objectArray[i].class_name}
+      /><input
+        type="text"
+        placeholder="class number"
+        class="class-number"
+        value=${objectArray[i].class_number}
+      /><input
+        type="number"
+        placeholder="credits"
+        min="0"
+        max="6"
+        class="class-credit"
+        value=${objectArray[i].class_credit}
+      />
+      <select name="select" class="select">
+        <option value=""></option>
+        <option value="A+">A+</option>
+        <option value="A">A</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B">B</option>
+        <option value="B-">B-</option>
+        <option value="C+">C+</option>
+        <option value="C">C</option>
+        <option value="C-">C-</option>
+        <option value="D">D</option>
+        <option value="E">E</option>
+      </select>
+      <button class="trash">
+        <i class="fas fa-trash"></i>
+      </button>
+    </div>
+  </form>`;
+  }
+
+  // select 無法使用上述方法更改，故直接用 JS 更改
+  graders = document.querySelectorAll("div.grader");
+  for (let i = 0; i < graders.length; i++) {
+    graders[i].children[3].value = objectArray[i].class_grade;
+  }
+
+  // 排序過後 select 顏色轉換
+  // 排序過後的 select 事件監聽
+  let allSelects = document.querySelectorAll("select");
+  allSelects.forEach((select) => {
+    changeColor(select);
+    select.addEventListener("change", (e) => {
+      setGPA();
+      changeColor(e.target);
+    });
+  });
+
+  // 排序過後 credit 事件監聽
+  let allCredits = document.querySelectorAll(".class-credit");
+  allCredits.forEach((credit) => {
+    credit.addEventListener("change", () => {
+      setGPA();
+    });
+  });
+
+  // 排序過後 trash button 事件監聽
+  let allTrash = document.querySelectorAll(".trash");
+  allTrash.forEach((trash) => {
+    trash.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.target.parentElement.parentElement.style.animation =
+        "scaleDown 0.5s ease forwards";
+      e.target.parentElement.parentElement.addEventListener(
+        "animationend",
+        (e) => {
+          e.target.remove();
+          setGPA();
+        }
+      );
+    });
+  });
+}
+
+// Merge Sort
+function merge(a1, a2) {
+  let result = [];
+  let i = 0;
+  let j = 0;
+
+  while (i < a1.length && j < a2.length) {
+    if (a1[i].class_grade_number > a2[j].class_grade_number) {
+      result.push(a2[j]);
+      j++;
+    } else {
+      result.push(a1[i]);
+      i++;
+    }
+  }
+
+  while (i < a1.length) {
+    result.push(a1[i]);
+    i++;
+  }
+
+  while (j < a2.length) {
+    result.push(a2[j]);
+    j++;
+  }
+
+  return result;
+}
+
+function mergeSort(arr) {
+  if (arr.length == 0) return;
+  if (arr.length == 1) return arr;
+  else {
+    let mid = Math.floor(arr.length / 2);
+    let left = arr.slice(0, mid);
+    let right = arr.slice(mid, arr.length);
+
+    return merge(mergeSort(left), mergeSort(right));
+  }
+}
