@@ -126,12 +126,6 @@ body main section.main-part div.all-inputs form div.grader button.trash i {
   font-size: 1.25rem;
   pointer-events: none;
   color: white;
-  transition: all 0.2s ease;
-}
-body main section.main-part div.all-inputs form div.grader button.trash i:hover {
-  color: yellow;
-  background-color: white;
-  border-radius: 50%;
 }
 body main section.main-part button.plus-btn {
   background-color: #272727;
@@ -166,6 +160,14 @@ body main section.main-part div.result h1#result-gpa {
   font-weight: bold;
 }
 
+@keyframes scaleDown {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0);
+  }
+}
 @keyframes scaleUp {
   from {
     transform: scale(0);

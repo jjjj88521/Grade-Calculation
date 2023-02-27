@@ -283,6 +283,18 @@ addButton.addEventListener("click", () => {
   newItag.classList.add("fas");
   newItag.classList.add("fa-trash");
   newButton.appendChild(newItag);
+  newButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.target.parentElement.parentElement.style.animation =
+      "scaleDown 0.5s ease forwards";
+    e.target.parentElement.parentElement.addEventListener(
+      "animationend",
+      (e) => {
+        e.target.remove();
+        setGPA();
+      }
+    );
+  });
 
   // 將元素成為 div.grader 的子元素
   newDiv.appendChild(newInput1);
@@ -294,4 +306,20 @@ addButton.addEventListener("click", () => {
   newForm.appendChild(newDiv);
   document.querySelector(".all-inputs").appendChild(newForm);
   newForm.style.animation = "scaleUp 0.5s ease forwards"; // new form 出現時的動畫
+});
+
+// 按下 trash 按鈕，刪掉 form
+let allTrash = document.querySelectorAll(".trash");
+allTrash.forEach((trash) => {
+  trash.addEventListener("click", (e) => {
+    e.target.parentElement.parentElement.style.animation =
+      "scaleDown 0.5s ease forwards";
+    e.target.parentElement.parentElement.addEventListener(
+      "animationend",
+      (e) => {
+        e.target.remove();
+        setGPA();
+      }
+    );
+  });
 });

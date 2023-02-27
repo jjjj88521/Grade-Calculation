@@ -139,12 +139,6 @@ body {
                 font-size: 1.25rem;
                 pointer-events: none;
                 color: white;
-                transition: all 0.2s ease;
-                &:hover {
-                  color: yellow;
-                  background-color: white;
-                  border-radius: 50%;
-                }
               }
             }
           }
@@ -187,6 +181,15 @@ body {
         }
       }
     }
+  }
+}
+
+@keyframes scaleDown {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0);
   }
 }
 
