@@ -171,7 +171,7 @@ addButton.addEventListener("click", () => {
   let newDiv = document.createElement("div");
   newDiv.classList.add("grader");
 
-  // 製作表單內元素
+  // 製作表單內 input
   let newInput1 = document.createElement("input");
   newInput1.setAttribute("type", "text");
   newInput1.setAttribute("list", "opt");
@@ -284,6 +284,7 @@ addButton.addEventListener("click", () => {
   newItag.classList.add("fa-trash");
   newButton.appendChild(newItag);
 
+  // 將元素成為 div.grader 的子元素
   newDiv.appendChild(newInput1);
   newDiv.appendChild(newInput2);
   newDiv.appendChild(newInput3);
@@ -292,4 +293,5 @@ addButton.addEventListener("click", () => {
 
   newForm.appendChild(newDiv);
   document.querySelector(".all-inputs").appendChild(newForm);
+  newForm.style.animation = "scaleUp 0.5s ease forwards"; // new form 出現時的動畫
 });
